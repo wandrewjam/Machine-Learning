@@ -1,0 +1,361 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+
+%%%%%%%% Convenient Commands %%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\der}[2]{\frac{d #1}{d #2}}
+\newcommand{\pder}[2]{\frac{d #1}{d #2}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\mat}[1]{\textbf{#1}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+
+% %%%%%%%%% Theorem Commands %%%%%%%%%
+% \newtheorem{thm}{Theorem}[section] %this creates theorems
+% \newtheorem{cor}[thm]{Corollary}
+% \newtheorem{prop}[thm]{Proposition}
+% \newtheorem{dfn}[thm]{Definition}
+% \newtheorem{lem}[thm]{Lemma}
+% \newtheorem{rmk}[thm]{Remark}
+% \newtheorem{exm}{Example}[section]
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Homework\ \#6} % Assignment title
+\newcommand{\hmwkDueDate}{Monday,\ November\ 6,\ 2017} % Due date
+\newcommand{\hmwkClass}{Machine Learning} % Course/class
+\newcommand{\hmwkClassTime}{3:00pm} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Abu-Mostafa} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Andrew Watson} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+\section{Overfitting and Deterministic Noise}
+\begin{homeworkProblem}
+Deterministic noise depends on $\mathcal{H}$, as some models approximate $f$ better than others. Assume that $\mathcal{H}' \subset \mathcal{H}$ and that $f$ is fixed. \textbf{In general} (but not necessarily in all cases), if we use $\mathcal{H}'$ instead of $\mathcal{H}$, how does deterministic noise behave? 
+
+\begin{enumerate}
+	\item[(a)] In general, deterministic noise will decrease.
+	\item[(b)] In general, deterministic noise will increase.
+	\item[(c)] In general, deterministic noise will be the same.
+	\item[(d)] There is deterministic noise for only one of $\mathcal{H}$ and $\mathcal{H}'$.
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	Let $(h')^*(x) \in \mathcal{H}'$ be the best possible approximation of $f(x)$ in $\mathcal{H}'$, that is $\|(f - (h')^*)(x)\|$ is as small as possible. However because $\mathcal{H}' \subset \mathcal{H}$, then $(h')^* \in \mathcal{H}$ and if we define $h'(x)$ to be the best possible approximation of $f$ in $\mathcal{H}$, then $\|(h'-f)(x)\| \le \|((h')^* - f)(x)\|$. Therefore, in general deterministic noise will monotonically increase if we use $\mathcal{H}'$.
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\section{Regularization with Weight Decay}
+In the following problems use the data provided in the files 
+\begin{center}
+\url{http://work.caltech.edu/data/in.dta}
+
+\url{http://work.caltech.edu/data/out.dta}
+\end{center}
+as a training and test set respectively. Each line of the files corresponds to a two-dimensional input $\mathbf{x} = (x_1, x_2)$, so that $\mathcal{X} = \R^2$, followed by the corresponding label from $\mathcal{Y} = \{-1, 1\}$. We are going to apply Linear Regression with a non-linear transformation for classification. The nonlinear transformation is given by 
+\[
+	\Phi(x_1, x_2) = (1, x_1, x_2, x_1^2, x_2^2, x_1 x_2, |x_1 - x_2|, |x_1 + x_2|).
+\]
+Recall that the classification error is defined as the fraction of misclassified points.
+
+\begin{homeworkProblem}
+Run Linear Regression on the training set after performing the non-linear transformation. What values are closest (in Euclidean distance) to the in-sample and out-of-sample classification errors, respectively? 
+
+\begin{enumerate}
+	\item [(a)] 0.03, 0.08
+	\item [(b)] 0.03, 0.10
+	\item [(c)] 0.04, 0.09
+	\item [(d)] 0.04, 0.11
+	\item [(e)] 0.05, 0.10
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	For details, see the Jupyter notebook containing the code for this section. Below are the in-sample and out-of-sample errors for several different choices of the weight decay parameter $\lambda = 10^k$. 
+{
+\setlength{\fboxrule}{1pt}
+\begin{center}
+\fbox{\parbox{0.45\textwidth}{
+\texttt{Without regularization\\
+E\_in = 0.029         E\_out = 0.084}
+
+\texttt{With regularization parameter k = -3\\
+E\_in = 0.029         E\_out = 0.080}
+
+\texttt{With regularization parameter k = -2\\
+E\_in = 0.029         E\_out = 0.084}
+
+\texttt{With regularization parameter k = -1\\
+E\_in = 0.029         E\_out = 0.056}
+
+\texttt{With regularization parameter k = 0\\
+E\_in = 0.000         E\_out = 0.092}
+
+\texttt{With regularization parameter k = 1\\
+E\_in = 0.057         E\_out = 0.124}
+
+\texttt{With regularization parameter k = 2\\
+E\_in = 0.200         E\_out = 0.228}
+
+\texttt{With regularization parameter k = 3\\
+E\_in = 0.371         E\_out = 0.436}
+}} \end{center}}
+}
+
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Now add weight decay to Linear Reression ,that is, add the term $\frac{\lambda}{N}\sum_{i=0}^7 w_i^2$ to the squared in-sample error, using $\lambda = 10^k$. What are the closest values to the in-sample and out-of-sample classification errors, respectively, for $k=-3$? Recall that the solution for Linear Regression with Weight Decay was derived in class. % Question
+
+\problemAnswer{ % Answer
+	See above
+}
+
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 4
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Now, use $k=3$. What are the closest values to the new in-sample and out-of-sample classification errors, respectively? % Question
+
+\problemAnswer{ % Answer
+	See above
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 5
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+What value of $k$, among the following choices, achieves the smallest out-of-sample classification error? % Question
+
+\problemAnswer{ % Answer
+	See above
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 6
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+What value is closest to the minimum out-of-sample classification error achieved by varying $k$ (limiting $k$ to integer values)? % Question
+
+\problemAnswer{ % Answer
+	See above
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 7
+%----------------------------------------------------------------------------------------
+\section{Regularization for Polynomials}
+Polynomial models can be viewed as linear models in a space $\mathcal{Z}$, under a nonlinear transform $\Phi: \mathcal{X} \rightarrow \mathcal{Z}$. Here, $\Phi$ transforms the scalar $x$ into a vector $\mathbf{z}$ of Legendre polynomials, $\mathbf{z} = (1, L_1(x), L_2(x), \hdots, L_Q(x))$. Our hypothesis set will be expressed as a linear combination of these polynomials, 
+\[
+	\mathcal{H}_Q = \left\{h \mid h(x) = \mathbf{w}^T\mathbf{z} = \sum_{q=0}^Q w_q L_q(x)\right\},
+\]
+where $L_0(x) = 1$.
+
+\begin{homeworkProblem}
+Consider the following hypothesis set defined by the constraint:
+\[
+	\mathcal{H}(Q, C, Q_0) = \{h \mid h(x) = \mathbf{w}^T \mathbf{z} \in \mathcal{H}_Q; w_q = C \textnormal{ for } q \ge Q_0\},
+\]
+which of the following statements is correct: 
+\begin{enumerate}
+	\item [(a)] $\mathcal{H}(10, 0, 3) \cup \mathcal{H}(10, 0, 4) = \mathcal{H}_4$
+	\item [(b)] $\mathcal{H}(10, 1, 3) \cup \mathcal{H}(10, 1, 4) = \mathcal{H}_3$
+	\item [(c)] $\mathcal{H}(10, 0, 3) \cap \mathcal{H}(10, 0, 4) = \mathcal{H}_2$
+	\item [(d)] $\mathcal{H}(10, 1, 3) \cap \mathcal{H}(10, 1, 4) = \mathcal{H}_1$
+	\item [(e)] None of the above
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	$\mathcal{H}(10, 0, 3)$ is the set of all polynomials up to degree 2 ($\mathcal{H}_2$), and similarly $\mathcal{H}(10, 0, 4)$ is the set of all polynomials up to degree 3 ($\mathcal{H}_3$). Because $\mathcal{H}_2 \subset \mathcal{H}_3$, $\mathcal{H}_2 \cap \mathcal{H}_3 = \mathcal{H}_2$. Therefore the answer is (c).
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 8
+%----------------------------------------------------------------------------------------
+\section{Neural Networks}
+
+\begin{homeworkProblem}
+A fully connected Neural Network has $L = 2; d^{(0)} = 5, d^{(1)} = 3, d^{(2)} = 1$. If only products of the form $w_{ij}^{(l)} x_i^{(l-1)}$, $w_{ij}^{(l)} \delta_j^{(l)}$, and $x_i^{(l-1)} \delta_j^{(l)}$ count as operations (even for $x_0^{(l-1)} = 1$), without counting anything else, which of the following is the closest to the total number of operations in a single iteration of backpropagation (using SGD on one data point)? % Question
+
+\problemAnswer{ % Answer
+
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 9
+%----------------------------------------------------------------------------------------
+Let us call every `node' in a Neural Network a unit, whether that unit is an input variable or a neuron in one of the layers. Consider a Neural Network that has 10 input units (the constant $x_0^{(0)}$ is counted here as a unit), one output unit, and 36 hidden units (each $x_0^{(l)}$ is also counted as a unit). The hidden units can be arranged in any number of layers $l = 1, \hdots, L-1$, and each layer is fully connected to the layer above it.
+
+\begin{homeworkProblem}
+What is the minimum possible number of weights that such a network can have? % Question
+
+\problemAnswer{ % Answer
+
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 10
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+What is the maximum possible number of weights that such a network can
+have? % Question
+
+\problemAnswer{ % Answer
+
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
