@@ -6,7 +6,7 @@ from important_functions import *
 def pla_trial(num_points=100, low=0, high=1, plotting=False):
     w = generate_target(low=low, high=high)
     X, y = generate_sample(num_points=num_points, w_true=w, low=low, high=high)
-    g, iters = pla(X=X, y=y)
+    g, iters = pla(X=X, y=y)[::2]
     e_out = monte_carlo(w, g, low=low, high=high)
 
     if plotting:
@@ -31,7 +31,7 @@ def pla_experiment(num_trials=1000, num_points=100, low=0, high=1):
     for i in range(0, num_trials):
         w = generate_target(low=low, high=high)
         X, y = generate_sample(num_points=num_points, w_true=w, low=low, high=high)
-        g, iters[i] = pla(X=X, y=y)
+        g, iters[i] = pla(X=X, y=y)[::2]
         e_out[i] = monte_carlo(w, g, low=low, high=high)
     print('For %d trials on %d points, the average number of iterations was %.f and the average '
           'classification error was %.6f' % (num_trials, num_points, np.mean(iters), np.mean(e_out)))
