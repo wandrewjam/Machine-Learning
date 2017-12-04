@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def generate_target(low=0, high=1):
+def generate_target(low=-1, high=1):
     # Generate the target function f
     a1, a2, b1, b2 = np.random.uniform(low=low, high=high, size=4)
     w1, w2 = a2 - b2, b1 - a1
@@ -21,7 +21,7 @@ def generate_target(low=0, high=1):
     return w_true
 
 
-def generate_sample(num_points, w_true, low=0, high=1):
+def generate_sample(num_points, w_true, low=-1, high=1):
     # Generate the sample points and classify
     X = np.ones(shape=(num_points, w_true.shape[0]))
     X[:, 1:] = np.random.uniform(low=low, high=high, size=(num_points, w_true.shape[0] - 1))
@@ -59,10 +59,10 @@ def pla(X, y, g_init=None, max_iters=10**6, pocket=False, tol=1e-6):
     if pocket:
         g = np.copy(best_g)
 
-    return g, iters
+    return g, e_in, iters
 
 
-def monte_carlo(w, g, low=0, high=1, iters=10**6):
+def monte_carlo(w, g, low=-1, high=1, iters=10**6):
     mcpoints = np.ones([iters, len(w)])
     mcpoints[:, 1:] = np.random.uniform(low=low, high=high, size=(iters, len(w) - 1))
     error_vector = np.sign(np.dot(mcpoints, w)) != np.sign(np.dot(mcpoints, g))
