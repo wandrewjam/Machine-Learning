@@ -4,14 +4,14 @@ from important_functions import *
 
 
 def pla_trial(num_points=100, low=0, high=1, plotting=False):
-    w = generate_target(low=low, high=high)
-    X, y = generate_sample(num_points=num_points, w_true=w, low=low, high=high)
-    g, iters = pla(X=X, y=y)[::2]
-    e_out = monte_carlo(w, g, low=low, high=high)
+    target, w = generate_2D_target(low=low, high=high)
+    X, y = generate_sample(num_points=num_points, target_fun=target, d=2, low=low, high=high)
+    guess, _, iters, g = pla(X=X, y=y)
+    e_out = estimate_error(target=target, guess=guess, error_function='clf', low=low, high=high, d=2)
 
     if plotting:
         x = np.linspace(start=low, stop=high, num=2)
-        x1, x2 = X[:, 1], X[:, 2]
+        x1, x2 = X[:, 0], X[:, 1]
         plt.plot(x1[y == 1], x2[y == 1], '.')
         plt.plot(x1[y == -1], x2[y == -1], '.')
         plt.plot(x, -w[1]*x/w[2] - w[0]/w[2])
@@ -29,10 +29,10 @@ def pla_trial(num_points=100, low=0, high=1, plotting=False):
 def pla_experiment(num_trials=1000, num_points=100, low=0, high=1):
     iters, e_out = np.empty(shape=num_trials), np.empty(shape=num_trials)
     for i in range(0, num_trials):
-        w = generate_target(low=low, high=high)
-        X, y = generate_sample(num_points=num_points, w_true=w, low=low, high=high)
-        g, iters[i] = pla(X=X, y=y)[::2]
-        e_out[i] = monte_carlo(w, g, low=low, high=high)
+        target = generate_2D_target(low=low, high=high)[0]
+        X, y = generate_sample(num_points=num_points, target_fun=target, d=2, low=low, high=high)
+        guess, iters[i] = pla(X=X, y=y)[::2]
+        e_out[i] = estimate_error(target=target, guess=guess, low=low, high=high)
     print('For %d trials on %d points, the average number of iterations was %.f and the average '
           'classification error was %.6f' % (num_trials, num_points, np.mean(iters), np.mean(e_out)))
     return None
