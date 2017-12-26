@@ -80,10 +80,13 @@ def pla(X, y, g_init=None, max_iters=10**6, pocket=False, tol=1e-6):
     return guess, e_in, iters, g
 
 
-def estimate_error(target, guess, error_function='clf', low=-1, high=1, iters=10**6, d=2):
+def estimate_error(target, guess, error_function='clf-det', nu=0, low=-1, high=1, iters=10**6, d=2):
     mcpoints = np.random.uniform(low=low, high=high, size=(iters, d))
-    if error_function == 'clf':
+    if error_function == 'clf-det':
         error = np.mean(target(mcpoints) != guess(mcpoints))
+    elif error_function == 'clf-rnd':
+        y = randomize_target(y=target(mcpoints), nu=nu)
+        error = np.mean(y != guess(mcpoints))
     elif error_function == 'lstsq':
         error = np.mean((target(mcpoints) - guess(mcpoints))**2)
     else:
