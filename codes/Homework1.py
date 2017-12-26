@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 from important_functions import *
 
 
-def pla_trial(num_points=100, low=0, high=1, plotting=False):
+def pla_trial(num_points=100, low=-1, high=1, plotting=False):
     target, w = generate_2D_target(low=low, high=high)
     X, y = generate_sample(num_points=num_points, target_fun=target, d=2, low=low, high=high)
     guess, _, iters, g = pla(X=X, y=y)
-    e_out = estimate_error(target=target, guess=guess, error_function='clf', low=low, high=high, d=2)
+    e_out = estimate_error(target=target, guess=guess, low=low, high=high, d=2)
 
     if plotting:
         x = np.linspace(start=low, stop=high, num=2)
@@ -26,7 +26,7 @@ def pla_trial(num_points=100, low=0, high=1, plotting=False):
     return None
 
 
-def pla_experiment(num_trials=1000, num_points=100, low=0, high=1):
+def pla_experiment(num_trials=1000, num_points=100, low=-1, high=1):
     iters, e_out = np.empty(shape=num_trials), np.empty(shape=num_trials)
     for i in range(0, num_trials):
         target = generate_2D_target(low=low, high=high)[0]
@@ -40,8 +40,8 @@ def pla_experiment(num_trials=1000, num_points=100, low=0, high=1):
 
 pla_trial(num_points=10, low=0, high=1, plotting=True)
 print('')
-pla_experiment(num_points=10, low=0, high=1)
+pla_experiment(num_points=10, num_trials=10,  low=0, high=1)
 print('')
 pla_trial(num_points=100, low=0, high=1, plotting=True)
 print('')
-pla_experiment(num_points=100, low=0, high=1)
+pla_experiment(num_points=100, num_trials=10, low=0, high=1)
