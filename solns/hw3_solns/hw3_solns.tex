@@ -1,0 +1,399 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{tikz}
+
+%%%%%%%% Convenient Commands %%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\der}[2]{\frac{d #1}{d #2}}
+\newcommand{\pder}[2]{\frac{d #1}{d #2}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\mat}[1]{\textbf{#1}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\tn}{\textnormal}
+\DeclareMathOperator{\sign}{sign}
+\renewcommand{\labelenumi}{[\textbf{\alph{enumi}}]}
+
+% %%%%%%%%% Theorem Commands %%%%%%%%%
+% \newtheorem{thm}{Theorem}[section] %this creates theorems
+% \newtheorem{cor}[thm]{Corollary}
+% \newtheorem{prop}[thm]{Proposition}
+% \newtheorem{dfn}[thm]{Definition}
+% \newtheorem{lem}[thm]{Lemma}
+% \newtheorem{rmk}[thm]{Remark}
+% \newtheorem{exm}{Example}[section]
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\subsection{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsubsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Homework\ \#3} % Assignment title
+\newcommand{\hmwkDueDate}{Monday,\ October\ 16,\ 2017} % Due date
+\newcommand{\hmwkClass}{CaltechX: Learning From Data} % Course/class
+\newcommand{\hmwkClassTime}{} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Yaser Abu-Mostafa} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Andrew Watson} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+
+\section{Generalization Error}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+The modified Hoeffding Inequality provides a way to characterize the generalization error with a probabilistic bound
+	$$\mathbb{P}[|E_\tn{in}(g) - E_\tn{out}(g)| > \epsilon] \le 2M e^{-2\epsilon^2 N}$$
+for any $\epsilon > 0$. If we set $\epsilon = 0.05$ and want the probability bound $2M e^{2\epsilon^2 N}$ to be at most 0.03, what is the least number of examples $N$ (among the given choices) needed for the case $M = 1$?
+
+\begin{enumerate}
+	\item 500
+	\item 1000
+	\item 1500
+	\item 2000
+	\item More examples are needed
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	To solve this, we can just plug in the values we are given, and then solve for $N$:
+	\begin{align*}
+		\mathbb{P}[|E_\tn{in}(g) - E_\tn{out}(g)| > \epsilon] &\le 2M e^{-2\epsilon^2 N} \\
+		&= 2e^{-2(0.05)^2 N} = 2e^{-0.005 N} \le 0.03 \\
+		&\implies N \ge 840.
+	\end{align*}
+	
+	Therefore [\textbf{b}] is the correct answer.
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Repeat for the case $M = 10$.
+
+\begin{enumerate}
+	\item 500
+	\item 1000
+	\item 1500
+	\item 2000
+	\item More examples are needed
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	For any value of $M$ (but still with $\epsilon = 0.05$), we require that $N \ge -\frac{\ln{(0.015/M)}}{0.005}$. By plugging $M = 10$ into this formula, we see that now the requirement is $N \ge 1301$, and therefore the answer is [\textbf{c}].
+}
+
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Repeat for the case $M = 100$.
+
+\begin{enumerate}
+	\item 500
+	\item 1000
+	\item 1500
+	\item 2000
+	\item More examples are needed
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	Finally, plugging $M = 100$ into the formula above, we find that $N \ge 1761$. Therefore the answer is [\textbf{d}].
+}
+\end{homeworkProblem}
+
+\section{Break Point}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 4
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+As shown in class, the (smallest) break point for the Perceptron Model in the two-dimensional case ($\R^2$) is 4 points. What is the smallest break point for the Perceptron Model in $\R^3$? (i.e., instead of the hypothesis set consisting of separating lines, it consists of separating planes.)
+
+\begin{enumerate}
+	\item 4
+	\item 5
+	\item 6
+	\item 7
+	\item 8
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{Growth Function}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 5
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Which of the following are possible formulas for a growth function $m_\mathcal{H}(N)$:
+\begin{enumerate}
+	\item[i)] $1 + N$
+	\item[ii)] $1 + N + {N}\choose{2}$
+	\item[iii)] $\sum_{i=1}^{\lfloor \sqrt{N} \rfloor} {N}\choose{i}$
+	\item[iv)] $2^{\lfloor N/2 \rfloor}$
+	\item[v)] $2^N$
+\end{enumerate}
+where $\lfloor u \rfloor$ is the biggest integer $\leq u$, and ${M}\choose{m} = 0$ when $m > M$.
+
+\begin{enumerate}
+	\item i, v
+	\item i, ii, v
+	\item i, iv, v
+	\item i, ii, iii, v
+	\item i, ii, iii, iv, v
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{Fun with Intervals}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 6
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Consider the ``2-intervals'' learning model, where $h: \R \rightarrow \{-1, +1\}$ and $h(x) = +1$ if the point is within either of two arbitrarily chosen intervals and $-1$ otherwise. What is the (smallest) break point for this hypothesis set?
+
+\begin{enumerate}
+	\item 3
+	\item 4
+	\item 5
+	\item 6
+	\item 7
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 7
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Which of the following is the growth function $m_\mathcal{H}(N)$ for the ``2-intervals'' hypothesis set?
+
+\begin{enumerate}
+	\item ${N+1}\choose{4}$
+	\item ${N+1}\choose{2} + 1$
+	\item ${{N+1}\choose{4}} + {{N+1}\choose{2}} + 1$
+	\item ${{N+1}\choose{4}} + {{N+1}\choose{3}} + {{N+1}\choose{2}} + {{N+1}\choose{1}} + 1$
+	\item None of the above
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 8
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Now, consider the general case: the ``M-intervals'' learning model. Again $h: \R \rightarrow \{-1, +1\}$, where $h(x) = +1$ if the point falls inside any of $M$ arbitrarily chosen intervals, otherwise $h(x) = -1$. What is the (smallest) break point of this hypothesis set?
+
+\begin{enumerate}
+	\item $M$
+	\item $M + 1$
+	\item $M^2$
+	\item $2M + 1$
+	\item $2M - 1$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{Convex Sets: The Triangle}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 9
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Consider the ``triangle'' learning model, where $h: \R^2 \rightarrow \{-1, +1\}$ and $h(\mathbf{x}) = +1$ if $\mathbf{x}$ lies within an arbitrarily chosen triangle in the plane and -1 otherwise. Which is the largest number of points in $\R^2$ (among the given choices) that can be shattered by this hypothesis set?
+
+\begin{enumerate}
+	\item 1
+	\item 3
+	\item 5
+	\item 7
+	\item 9
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{Non-Convex Sets: Concentric Circles}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 10
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Compute the growth function $m_\mathcal{H}(N)$ for the learning model made up of two concentric circles around the origin in $\R^2$. Specifically, $\mathcal{H}$ contains the functions which are +1 for
+	$$a^2 \leq x_1^2 + x_2^2 \leq b^2$$
+and -1 otherwise, where $a$ and $b$ are the model parameters. The growth function is
+
+\begin{enumerate}
+	\item $N + 1$
+	\item ${N+1}\choose{2} + 1$
+	\item ${N+1}\choose{3} + 1$
+	\item $2N^2 + 1$
+	\item None of the above
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

@@ -1,0 +1,406 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{tikz}
+
+%%%%%%%% Convenient Commands %%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\der}[2]{\frac{d #1}{d #2}}
+\newcommand{\pder}[2]{\frac{d #1}{d #2}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\mat}[1]{\textbf{#1}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\tn}{\textnormal}
+\DeclareMathOperator{\sign}{sign}
+\renewcommand{\labelenumi}{[\textbf{\alph{enumi}}]}
+
+% %%%%%%%%% Theorem Commands %%%%%%%%%
+% \newtheorem{thm}{Theorem}[section] %this creates theorems
+% \newtheorem{cor}[thm]{Corollary}
+% \newtheorem{prop}[thm]{Proposition}
+% \newtheorem{dfn}[thm]{Definition}
+% \newtheorem{lem}[thm]{Lemma}
+% \newtheorem{rmk}[thm]{Remark}
+% \newtheorem{exm}{Example}[section]
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\subsection{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsubsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Homework\ \#2} % Assignment title
+\newcommand{\hmwkDueDate}{Monday,\ October\ 9,\ 2017} % Due date
+\newcommand{\hmwkClass}{CaltechX: Learning From Data} % Course/class
+\newcommand{\hmwkClassTime}{} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Yaser Abu-Mostafa} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Andrew Watson} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+
+\section{Hoeffding Inequality}
+
+Run a computer simulation for flipping 1,000 virtual fair coins. Flip each coin independently 10 times. Focus on 3 coins as follows: $c_1$ is the first coin flipped, $c_\tn{rand}$ is a coin chosen randomly from the 1,000, and $c_\tn{min}$ is the coin which had the minimum frequency of heads (pick the earlier one in case of a tie). Let $\nu_1$, $\nu_\tn{rand}$, and $\nu_\tn{min}$ be the \emph{fraction} of heads obtained for the 3 respective coins out of the 10 tosses.
+
+Run the experiment 100,000 times in order to get a full distribution of $\nu_1$, $\nu_\tn{rand}$, and $\nu_\tn{min}$ (note that $c_\tn{rand}$ and $c_\tn{min}$ will change from run to run).
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+The average value of $\nu_\tn{min}$ is closest to:
+
+\begin{enumerate}
+	\item 0
+	\item 0.01
+	\item 0.1
+	\item 0.5
+	\item 0.67
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	See \texttt{homework2.py} for Python codes. The simulation returned $\nu_\tn{min} = 0.04$ and the answer is [\textbf{b}].
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Which coin(s) has a distribution of $\nu$ that satisfies the (single-bin) Hoeffding
+Inequality?
+
+\begin{enumerate}
+	\item $c_1$ only
+	\item $c_\tn{rand}$ only
+	\item $c_\tn{min}$ only
+	\item $c_1$ and $c_\tn{rand}$
+	\item $c_\tn{min}$ and $c_\tn{rand}$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	The simulation returned $\nu_1 = 0.50$, $\nu_\tn{rand} = 0.50$, and $\nu_\tn{min} = 0.04$. Therefore the first coin and the randomly chosen coin satisfy the single-bin Hoeffding inequality, and the minimum does not. The answer is [\textbf{d}].
+}
+
+\end{homeworkProblem}
+
+\section{Error and Noise}
+
+Consider the bin model for a hypothesis $h$ that makes an error with probability $\mu$ in approximating a deterministic target function $f$ (both $h$ and $f$ are binary functions). If we use the same $h$ to approximate a noisy version of $f$ given by:
+\[
+	P(y \mid \mathbf{x}) = \left\{ \begin{array}{rc} \lambda & y = f(\mathbf{x}) \\ 1 - \lambda & y \neq f(\mathbf{x}) \end{array} \right.
+\]
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+What is the probability of error that $h$ makes in approximating $y$? \emph{Hint: Two wrongs can make a right!}
+
+\begin{enumerate}
+	\item $\mu$
+	\item $\lambda$
+	\item $1 - \mu$
+	\item $(1 - \lambda)\mu + \lambda (1 - \mu)$
+	\item $(1 - \lambda)(1 - \mu) + \lambda \mu$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	There are two ways the hypothesis $h$ can make an error in approximating the random variable $y$: $h(\mathbf{x}) \neq f(\mathbf{x})$ and $y = f(\mathbf{x})$, or $h(\mathbf{x}) = f(\mathbf{x})$ and $y \neq f(\mathbf{x})$. The probability of the first case is $\mu \lambda$ and the probability of the second case is $(1 - \mu)(1 - \lambda)$. Summing these probabilities together gives the answer [\textbf{e}].
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 4
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+At what value of $\lambda$ will the performance of $h$ be independent of $\mu$?
+
+\begin{enumerate}
+	\item 0
+	\item 0.5
+	\item $1/\sqrt{2}$
+	\item 1
+	\item No values of $\lambda$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	If $\lambda = 0.5$, then in a sense there is nothing to learn, because $f(\mathbf{x})$ has no effect on on the distribution of $y$. Using the formula we derived in the previous problem $\mathbb{P}[h(\mathbf{x}) \neq y] = (1 - \lambda)(1 - \mu) + \lambda \mu = 0.5(1 - \mu) + 0.5\mu = 0.5$, that is $\mu$ has no effect on the performance of $h$. Therefore the answer is [\textbf{b}].
+}
+\end{homeworkProblem}
+
+\section{Linear Regression}
+
+In these problems, we will explore how Linear Regression for classification works. As with the Perceptron Learning Algorithm in Homework \# 1, you will create your own target function $f$ and data set $\mathcal{D}$. Take $d = 2$ so you can visualize the problem, and assume $\mathcal{X} = [-1, 1] \times [-1, 1]$ with uniform probability of picking each $\mathbf{x} \in \mathcal{X}$. In each run, choose a random line in the plane as your target function $f$ (do this by taking two random, uniformly distributed points in $[-1, 1] \times [-1, 1]$ and taking the line passing through them), where one side of the line maps to $+1$ and the other maps
+to $-1$. Choose the inputs $\mathbf{x}_n$ of the data set as random points (uniformly in $\mathcal{X}$), and
+evaluate the target function on each $\mathbf{x}_n$ to get the corresponding output $y_n$.
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 5
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Take $N = 100$. Use Linear Regression to find $g$ and evaluate $E_\tn{in}$, the fraction of in-sample points which got classified incorrectly. Repeat the experiment 1000 times and take the average (keep the $f$'s and $g$'s as they will be used again in Problem 6). Which of the following values is closest to the average $E_\tn{in}$? (\emph{Closest} is the option that makes the expression $|\tn{your answer} - \tn{given option}|$ closest to
+0. Use this definition of \emph{closest} here and throughout.)
+
+\begin{enumerate}
+	\item 0
+	\item 0.001
+	\item 0.01
+	\item 0.1
+	\item 0.5
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	The Python simulation found an average $E_\tn{in}$ of $0.0392$. The closest answer is [\textbf{c}].
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 6
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Now, generate 1000 fresh points and use them to estimate the out-of-sample error $E_\tn{out}$ of the $g$'s that you got in Problem 5 (number of misclassified out-of- sample points / total number of out-of-sample points). Again, run the experiment 1000 times and take the average. Which value is closest to the average $E_\tn{out}$?
+
+\begin{enumerate}
+	\item 0
+	\item 0.001
+	\item 0.01
+	\item 0.1
+	\item 0.5
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	The average $E_\tn{out}$ was $0.0484$, which is closest to [\textbf{c}].
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 7
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Now, take $N = 10$. After finding the weights using Linear Regression, use them as a vector of initial weights for the Perceptron Learning Algorithm. Run PLA until it converges to a final vector of weights that completely separates all the in-sample points. Among the choices below, what is the closest value to the average number of iterations (over 1000 runs) that PLA takes to converge? (When implementing PLA, have the algorithm choose a point randomly from the set of misclassified points at each iteration)
+
+\begin{enumerate}
+	\item 1
+	\item 15
+	\item 300
+	\item 5000
+	\item 10000
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	On average, the PLA converged in $6.78$ iterations when started at the least-squares solution, which is closest to [\textbf{a}].
+}
+\end{homeworkProblem}
+
+\section{Nonlinear Transformation}
+
+In these problems, we again apply Linear Regression for classification. Consider the target function:
+\[
+	f(x_1, x_2) = \sign(x_1^2 + x_2^2 - 0.6)
+\]
+
+Generate a training set of $N = 1000$ points on $\mathcal{X} = [-1, 1] \times [-1, 1]$ with a uniform probability of picking each $\mathbf{x} \in \mathcal{X}$. Generate simulated noise by flipping the sign of the output in a randomly selected 10\% subset of the generated training set.
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 8
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Carry out Linear Regression without transformation, i.e., with feature vector:
+	$$(1, x_1, x_2),$$
+to find the weight $\mathbf{w}$. What is the closest value to the classification in-sample
+error $E_\tn{in}$? (Run the experiment 1000 times and take the average $E_\tn{in}$ to reduce
+variation in your results.)
+
+\begin{enumerate}
+	\item 0
+	\item 0.1
+	\item 0.3
+	\item 0.5
+	\item 0.8
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	Without transformation, the PLA hypothesis had an average $E_\tn{in}$ of $0.5045$, which is closest to [\textbf{d}].
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 9
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Now, transform the $N = 1000$ training data into the following nonlinear feature
+vector:
+$$(1, x_1, x_2, x_1 x_2, x_1^2, x_2^2)$$
+
+Find the vector $\tilde{\mathbf{w}}$ that corresponds to the solution of Linear Regression. Which of the following hypotheses is closest to the one you find? Closest here means agrees the most with your hypothesis (has the highest probability of agreeing on a randomly selected point). Average over a few runs to make sure your answer is stable.
+
+\begin{enumerate}
+	\item $g(x_1, x_2) = \sign(-1 - 0.05 x_1 + 0.08 x_2 + 0.13 x_1 x_2 + 1.5 x_1^2 + 1.5 x_2^2)$
+	\item $g(x_1, x_2) = \sign(-1 - 0.05 x_1 + 0.08 x_2 + 0.13 x_1 x_2 + 1.5 x_1^2 + 15 x_2^2)$
+	\item $g(x_1, x_2) = \sign(-1 - 0.05 x_1 + 0.08 x_2 + 0.13 x_1 x_2 + 15 x_1^2 + 1.5 x_2^2)$
+	\item $g(x_1, x_2) = \sign(-1 - 1.5 x_1 + 0.08 x_2 + 0.13 x_1 x_2 + 0.05 x_1^2 + 0.05 x_2^2)$
+	\item $g(x_1, x_2) = \sign(-1 - 0.05 x_1 + 0.08 x_2 + 1.5 x_1 x_2 + 0.15 x_1^2 + 0.15 x_2^2)$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	With the quadratic transformation averaged over 1000 trials, the average hypothesis of the PLA was $g(x_1, x_2) = \sign(-1 - 0.0024 x_1 + 0.0016 x_2 + 0.0011 x_1 x_2 + 1.5707 x_1^2 + 1.5683 x_2^2)$, which is closest to [\textbf{a}].
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 10
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+What is the closest value to the classification out-of-sample error $E_\tn{out}$ of your hypothesis from Problem 9? (Estimate it by generating a new set of 1000 points and adding noise, as before. Average over 1000 runs to reduce the variation in your results.)
+
+\begin{enumerate}
+	\item 0
+	\item 0.1
+	\item 0.3
+	\item 0.5
+	\item 0.8
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	The estimated $E_\tn{out}$ of this hypothesis was 0.1231, which is closest to [\textbf{b}].
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

@@ -1,0 +1,405 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{tikz}
+
+%%%%%%%% Convenient Commands %%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\der}[2]{\frac{d #1}{d #2}}
+\newcommand{\pder}[2]{\frac{d #1}{d #2}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\mat}[1]{\textbf{#1}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\tn}{\textnormal}
+\newcommand{\e}{\textnormal{e}}
+\DeclareMathOperator{\sign}{sign}
+\renewcommand{\labelenumi}{[\textbf{\alph{enumi}}]}
+
+% %%%%%%%%% Theorem Commands %%%%%%%%%
+% \newtheorem{thm}{Theorem}[section] %this creates theorems
+% \newtheorem{cor}[thm]{Corollary}
+% \newtheorem{prop}[thm]{Proposition}
+% \newtheorem{dfn}[thm]{Definition}
+% \newtheorem{lem}[thm]{Lemma}
+% \newtheorem{rmk}[thm]{Remark}
+% \newtheorem{exm}{Example}[section]
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\subsection{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsubsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Homework\ \#4} % Assignment title
+\newcommand{\hmwkDueDate}{Monday,\ October\ 23,\ 2017} % Due date
+\newcommand{\hmwkClass}{CaltechX: Learning From Data} % Course/class
+\newcommand{\hmwkClassTime}{} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Yaser Abu-Mostafa} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Andrew Watson} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+
+\section{Linear Regression Error}
+
+Consider a noisy target $y = {\mathbf{w}^*}^T \mathbf{x} + \epsilon$, where $\mathbf{x} \in \R^d$ (with the added coordinate $x_0 = 1$), $y \in \R$, $\mathbf{w}^*$ is an unknown vector, and $\epsilon$ is a noise term with zero mean and $\sigma^2$ variance. Assume $\epsilon$ is independent of $\mathbf{x}$ and of all other $\epsilon$'s. If linear regression is carried out using a training data set $\mathcal{D} = \{(\mathbf{x}_1, y_1), \hdots, (\mathbf{x}_n, y_n)$, and outputs the parameter vector $\mathbf{w}_\tn{lin}$, it can be shown that the expected in-sample error $E_\tn{in}$ with respect to $\mathcal{D}$ is given by:
+\[
+	\mathbb{E}_\mathcal{D}[E_\tn{in}(\mathbf{w}_\tn{lin})] = \sigma^2 \left(1 - \frac{d+1}{N}\right)
+\]
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+For $\sigma = 0.1$ and $d = 8$, which among the following choices is the smallest number of examples $N$ that will result in an expected $E_\tn{in}$ greater than 0.008?
+
+\begin{enumerate}
+	\item 10
+	\item 25
+	\item 100
+	\item 500
+	\item 1000
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{Nonlinear Transforms}
+
+In linear classification, consider the feature transform $\Phi: \R^2 \rightarrow \R^2$ (plus the added
+zeroth coordinate) given by:
+\[
+	\Phi(1, x_1, x_2) = (1, x_1^2, x_2^2)
+\]
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Which of the following sets of constraints on the weights in the $\mathcal{Z}$ space could correspond to the hyperbolic decision boundary in $\mathcal{X}$ depicted in the figure?
+
+You may assume that $\tilde{w}_0$ can be selected to achieve the desired boundary.
+
+\begin{enumerate}
+	\item $\tilde{w}_1 = 0$, $\tilde{w}_2 > 0$
+	\item $\tilde{w}_1 > 0$, $\tilde{w}_2 = 0$
+	\item $\tilde{w}_1 > 0$, $\tilde{w}_2 > 0$
+	\item $\tilde{w}_1 < 0$, $\tilde{w}_2 > 0$
+	\item $\tilde{w}_1 > 0$, $\tilde{w}_2 < 0$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+
+\end{homeworkProblem}
+
+Now, consider the 4th order polynomial transform from the input space $\R^2$:
+\[
+	\Phi_4: \mathcal{x} \rightarrow (1, x_1, x_2, x_1^2, x_1 x_2, x_2^2, x_1^3, x_1^2 x_2, x_1 x_2^2, x_2^3, x_1^4, x_1^3 x_2, x_1^2 x_2^2, x_1 x_2^3, x_2^4)
+\]
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+What is the smallest value among the following choices that is \emph{not} smaller than the VC dimension of a linear model in this transformed space?
+
+\begin{enumerate}
+	\item 3
+	\item 5
+	\item 15
+	\item 20
+	\item 21
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{Gradient Descent}
+
+Consider the nonlinear error surface $E(u, v) = (u e^v - 2v e^{-u})^2$. We start at the point $(u, v) = (1, 1)$ and minimize this error using gradient descent in the $uv$ space. Use $\eta = 0.1$ (learning rate, not step size).
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 4
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+What is the partial derivative of $E(u, v)$ with respect to $u$, i.e., $\frac{\partial E}{\partial u}$?
+
+\begin{enumerate}
+	\item $(u e^v - 2v e^{-u})^2$
+	\item $2(u e^v - 2v e^{-u})$
+	\item $2(e^v + 2v e^{-u})$
+	\item $2(e^v - 2v e^{-u})(u e^v - 2v e^{-u})$
+	\item $2(e^v + 2v e^{-u})(u e^v - 2v e^{-u})$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 5
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+How many iterations (among the given choices) does it take for the error $E(u, v)$ to fall below $10^{-14}$ for the first time? In your programs, make sure to use double precision to get the needed accuracy.
+
+\begin{enumerate}
+	\item 1
+	\item 3
+	\item 5
+	\item 10
+	\item 17
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 6
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+After running enough iterations such that the error has just dropped below $10^{-14}$, what are the closest values (in Euclidean distance) among the following choices to the final $(u, v)$ you got in Problem 5?
+
+\begin{enumerate}
+	\item $(1.000, 1.000)$
+	\item $(0.713, 0.045)$
+	\item $(0.016, 0.112)$
+	\item $(-0.083, 0.029)$
+	\item $(0.045, 0.024)$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 7
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Now, we will compare the performance of ``coordinate descent.'' In each iteration, we have two steps along the 2 coordinates. Step 1 is to move only along the $u$ coordinate to reduce the error (assume first-order approximation holds like in gradient descent), and step 2 is to reevaluate and move only along the $v$ coordinate to reduce the error (again, assume first-order approximation holds). Use the same learning rate of $\eta = 0.1$ as we did in gradient descent. What will the error $E(u, v)$ be closest to after 15 full iterations (30 steps)?
+
+\begin{enumerate}
+	\item $10^{-1}$
+	\item $10^{-7}$
+	\item $10^{-14}$
+	\item $10^{-17}$
+	\item $10^{-20}$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{Logistic Regression}
+
+In this problem you will create your own target function $f$ (probability in this case) and data set $\mathcal{D}$ to see how Logistic Regression works. For simplicity, we will take $f$ to be a 0/1 probability so $y$ is a deterministic function of $\mathbf{x}$.
+
+Take $d = 2$ so you can visualize the problem, and let $\mathcal{X} = [-1, 1] \times [-1, 1]$ with uniform probability of picking each $\mathbf{x} \in \mathcal{X}$. Choose a line in the plane as the boundary between $f(\mathbf{x}) = 1$ (where $y$ has to be +1) and $f(\mathbf{x}) = 0$ (where $y$ has to be -1) by taking two random, uniformly distributed points from $\mathcal{X}$ and taking the line passing through them as the boundary between $y = \pm1$. Pick $N = 100$ training points at random from $\mathcal{X}$, and evaluate the outputs $y_n$ for each of these points $\mathbf{x}_n$.
+
+Run Logistic Regression with Stochastic Gradient Descent to find $g$, and estimate $E_\tn{out}$ (the \textbf{cross entropy} error) by generating a sufficiently large, separate set of points to evaluate the error. Repeat the experiment for 100 runs with different targets and take the average. Initialize the weight vector of Logistic Regression to all zeros in each run. Stop the algorithm when $\|\mathbf{x}^{(t-1)} - \mathbf{x}^{(t)}\| < 0.01$, where $\mathbf{w}^{(t)}$ denotes the weight vector at the end of epoch $t$. An epoch is a full pass through the $N$ data points (use a random permutation of $1, 2, \hdots, N$ to present the data points to the algorithm within each epoch, and use different permutations for different epochs). Use a learning rate of 0.01.
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 8
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Which of the following is closest to $E_\tn{out}$ for $N = 100$?
+
+\begin{enumerate}
+	\item 0.025
+	\item 0.050
+	\item 0.075
+	\item 0.100
+	\item 0.125
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 9
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+How many epochs does it take on average for Logistic Regression to converge for $N = 100$ using the above initialization and termination rules and the specified learning rate? Pick the value that is closest to your results.
+
+\begin{enumerate}
+	\item 350
+	\item 550
+	\item 750
+	\item 950
+	\item 1750
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{PLA as SGD}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 10
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+The Perceptron Learning Algorithm can be implemented as SGD using which of the following error functions $\e_n(\mathbf{w})$? Ignore the points $\mathbf{w}$ at which $\e_n(\mathbf{w})$ is not twice differentiable.
+
+\begin{enumerate}
+	\item $\e_n(\mathbf{w}) = e^{-y_n \mathbf{w}^T \mathbf{x}_n}$
+	\item $\e_n(\mathbf{w}) = -y_n \mathbf{w}^T \mathbf{x}_n$
+	\item $\e_n(\mathbf{w}) = (y_n - \mathbf{w}^T \mathbf{x}_n)^2$
+	\item $\e_n(\mathbf{w}) = \ln(1 + e^{-y_n \mathbf{w}^T \mathbf{x}_n})$
+	\item $\e_n(\mathbf{w}) = -\min(0, y_n \mathbf{w}^T \mathbf{x}_n)$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

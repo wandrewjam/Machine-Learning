@@ -1,0 +1,418 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{tikz}
+
+%%%%%%%% Convenient Commands %%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\der}[2]{\frac{d #1}{d #2}}
+\newcommand{\pder}[2]{\frac{d #1}{d #2}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\mat}[1]{\textbf{#1}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\tn}{\textnormal}
+\newcommand{\e}{\textnormal{e}}
+\DeclareMathOperator{\sign}{sign}
+\renewcommand{\labelenumi}{[\textbf{\alph{enumi}}]}
+
+% %%%%%%%%% Theorem Commands %%%%%%%%%
+% \newtheorem{thm}{Theorem}[section] %this creates theorems
+% \newtheorem{cor}[thm]{Corollary}
+% \newtheorem{prop}[thm]{Proposition}
+% \newtheorem{dfn}[thm]{Definition}
+% \newtheorem{lem}[thm]{Lemma}
+% \newtheorem{rmk}[thm]{Remark}
+% \newtheorem{exm}{Example}[section]
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\subsection{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsubsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Homework\ \#8} % Assignment title
+\newcommand{\hmwkDueDate}{Monday,\ November\ 20,\ 2017} % Due date
+\newcommand{\hmwkClass}{CaltechX: Learning From Data} % Course/class
+\newcommand{\hmwkClassTime}{} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Yaser Abu-Mostafa} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Andrew Watson} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+
+\section{Primal versus Dual Problem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Recall that $N$ is the size of the data set and $d$ is the dimensionality of the input space. The original formulation of the hard-margin SVM problem (minimize $\frac{1}{2}\mathbf{w}^T\mathbf{w}$ subject to the inequality constraints), without going through the Lagrangian dual problem, is
+
+\begin{enumerate}
+	\item a quadratic programming problem problem with $N$ variables
+	\item a quadratic programming problem problem with $N+1$ variables
+	\item a quadratic programming problem problem with $d$ variables
+	\item a quadratic programming problem problem with $d+1$ variables
+	\item not a quadratic programming problem
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\textit{Notice: The following problems deal with a real-life data set. In addition, the computational packages you use may employ different heuristics and require different tweaks. This is a typical situation that a Machine Learning practitioner faces. There are uncertainties, and the answers may or may not match our expectations. Although this situation is not as `sanitized' as other homework problems, it is important to go through it as part of the learning experience.}
+
+\section{SVM with Soft Margins}
+
+In the rest of the problems of this homework set, we apply soft-margin SVM to handwritten digits from the processed US Postal Service Zip Code data set. Download the data (extracted features of intensity and symmetry) for training and testing:
+
+http://www.amlbook.com/data/zip/features.train
+http://www.amlbook.com/data/zip/features.test
+
+(the format of each row is: digit intensity symmetry). We will train two types of binary classifiers; one-versus-one (one digit is class +1 and another digit is class -1, with the rest of the digits disregarded), and one-versus-all (one digit is class +1 and the rest of the digits are class -1).
+
+The data set has thousands of points, and some quadratic programming packages cannot handle this size. We recommend that you use the packages in libsvm:
+
+http://www.csie.ntu.edu.tw/~cjlin/libsvm/
+
+Implement SVM with soft margin on the above zip-code data set by solving
+\[
+	\begin{array}{cl}
+		\min_\mathbf{\alpha} & \frac{1}{2} \sum_{n = 1}^N \sum_{m = 1}^N \alpha_n \alpha_m y_n y_m K(\mathbf{x}_n, \mathbf{x}_m) - \sum_{n = 1}^N \alpha_n \\
+		\tn{s.t.} & \sum_{n = 1}^N y_n \alpha_n = 0 \\
+		& 0 \leq \alpha_n \leq C \quad n = 1, \hdots, N
+	\end{array}
+\]
+
+When evaluating $E_\tn{in}$ and $E_\tn{out}$ of the resulting classifier, use binary classification error.
+
+Practical remarks:
+
+\begin{enumerate}
+	\item[(i)] For the purpose of this homework, do not scale the data when you use libsvm or other packages, otherwise you may inadvertently change the (effective) kernel and get different results.
+	\item[(ii)] In some packages, you need to specify double precision.
+	\item[(iii)] In 10-fold cross validation, if the data size is not a multiple of 10, the sizes of the 10 subsets may be off by 1 data point.
+	\item[(iv)] Some packages have software parameters whose values affect the outcome. ML practitioners have to deal with this kind of added uncertainty.
+\end{enumerate}
+
+\section{Polynomial Kernels}
+
+Consider the polynomial kernel $K(\mathbf{x}_n, \mathbf{x}_m) = (1 + \mathbf{x}_n^T \mathbf{x}_m)^Q$, where $Q$ is the degree of the polynomial.
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+With $C = 0.01$ and $Q = 2$, which of the following classifiers has the \textbf{highest} $E_\tn{in}$?
+
+\begin{enumerate}
+	\item 0 versus all
+	\item 2 versus all
+	\item 4 versus all
+	\item 6 versus all
+	\item 8 versus all
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+With $C = 0.01$ and $Q = 2$, which of the following classifiers has the \textbf{lowest} $E_\tn{in}$?
+
+\begin{enumerate}
+	\item 1 versus all
+	\item 3 versus all
+	\item 5 versus all
+	\item 7 versus all
+	\item 9 versus all
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 4
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Comparing the two selected classifiers from Problems 2 and 3, which of the following values is the closest to the difference between the number of support vectors of these two classifiers?
+
+\begin{enumerate}
+	\item 600
+	\item 1200
+	\item 1800
+	\item 2400
+	\item 3000
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 5
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Consider the 1 versus 5 classifier with $Q = 2$ and $C \in \{0.001, 0.01, 0.1, 1\}$. Which of the following statements is correct? Going up or down means strictly so.
+
+\begin{enumerate}
+	\item The number of support vectors goes down when $C$ goes up.
+	\item The number of support vectors goes up when $C$ goes up.
+	\item $E_\tn{out}$ goes down when C goes up.
+	\item Maximum $C$ achieves the lowest $E_\tn{in}$.
+	\item None of the above.
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 6
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+In the 1 versus 5 classifier, comparing $Q = 2$ with $Q = 5$, which of the following statements is correct?
+
+\begin{enumerate}
+	\item When $C = 0.0001$, $E_\tn{in}$ is higher at $Q = 5$.
+	\item When $C = 0.001$, the number of support vectors is lower at $Q = 5$.
+	\item When $C = 0.01$, $E_\tn{in}$ is higher at $Q = 5$.
+	\item When $C = 1$, $E_\tn{out}$ is lower at $Q = 5$.
+	\item None of the above
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{Cross Validation}
+
+In the next two problems, we will experiment with 10-fold cross validation for the polynomial kernel. Because $E_\tn{cv}$ is a random variable that depends on the random partition of the data, we will try 100 runs with different partitions and base our answer on how many runs lead to a particular choice.
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 7
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Consider the 1 versus 5 classifier with $Q = 2$. We use $E_\tn{cv}$ to select $C \in \{0.0001, 0.001, 0.01, 0.1, 1\}$. If there is a tie in $E_\tn{cv}$, select the smaller $C$. Within the 100 random runs, which of the following statements is correct?
+
+\begin{enumerate}
+	\item $C = 0.0001$ is selected most often.
+	\item $C = 0.001$ is selected most often.
+	\item $C = 0.01$ is selected most often.
+	\item $C = 0.1$ is selected most often.
+	\item $C = 1$ is selected most often.
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 8
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Again, consider the 1 versus 5 classifier with $Q = 2$. For the winning selection in the previous problem, the average value of $E_\tn{cv}$ over the 100 runs is closest to
+
+\begin{enumerate}
+	\item 0.001
+	\item 0.003
+	\item 0.005
+	\item 0.007
+	\item 0.009
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{RBF Kernel}
+
+Consider the radial basis function (RBF) kernel $K(\mathbf{x}_n, \mathbf{x}_m) = \exp\left(-\|\mathbf{x}_n - \mathbf{x}_m\|^2\right)$ in the soft-margin SVM approach. Focus on the 1 versus 5 classifier.
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 9
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Which of the following values of $C$ results in the lowest $E_\tn{in}$?
+
+\begin{enumerate}
+	\item $C = 0.01$
+	\item $C = 1$
+	\item $C = 100$
+	\item $C = 10^4$
+	\item $C = 10^6$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 10
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Which of the following values of $C$ results in the lowest $E_\tn{out}$?
+
+\begin{enumerate}
+	\item $C = 0.01$
+	\item $C = 1$
+	\item $C = 100$
+	\item $C = 10^4$
+	\item $C = 10^6$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

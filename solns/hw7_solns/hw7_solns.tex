@@ -1,0 +1,397 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{tikz}
+
+%%%%%%%% Convenient Commands %%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\der}[2]{\frac{d #1}{d #2}}
+\newcommand{\pder}[2]{\frac{d #1}{d #2}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\mat}[1]{\textbf{#1}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\tn}{\textnormal}
+\newcommand{\e}{\textnormal{e}}
+\DeclareMathOperator{\sign}{sign}
+\renewcommand{\labelenumi}{[\textbf{\alph{enumi}}]}
+
+% %%%%%%%%% Theorem Commands %%%%%%%%%
+% \newtheorem{thm}{Theorem}[section] %this creates theorems
+% \newtheorem{cor}[thm]{Corollary}
+% \newtheorem{prop}[thm]{Proposition}
+% \newtheorem{dfn}[thm]{Definition}
+% \newtheorem{lem}[thm]{Lemma}
+% \newtheorem{rmk}[thm]{Remark}
+% \newtheorem{exm}{Example}[section]
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\subsection{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsubsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Homework\ \#7} % Assignment title
+\newcommand{\hmwkDueDate}{Monday,\ November\ 13,\ 2017} % Due date
+\newcommand{\hmwkClass}{CaltechX: Learning From Data} % Course/class
+\newcommand{\hmwkClassTime}{} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Yaser Abu-Mostafa} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Andrew Watson} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+
+\section{Validation}
+
+In the following problems, use the data provided in the files \texttt{in.dta} and \texttt{out.dta} for Homework \# 6. We are going to apply linear regression with a nonlinear transformation for classification (without regularization). The nonlinear transformation is given by $\phi_0$ through $\phi_7$ which transform $(x1, x2)$ into
+\[
+	1 \qquad x_1 \qquad x_2 \qquad x_1^2 \qquad x_2^2 \qquad x_1 x_2 \qquad |x_1 - x_2| \qquad |x_1 + x_2|
+\]
+
+To illustrate how taking out points for validation affects the performance, we will consider the hypotheses trained on $\mathcal{D}_\tn{train}$ (without restoring the full $\mathcal{D}$ for training after validation is done).
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Split \texttt{in.dta} into training (first 25 examples) and validation (last 10 examples). Train on the 25 examples only, using the validation set of 10 examples to select between five models that apply linear regression to $\phi_0$ through $\phi_k$, with $k = 3, 4, 5, 6, 7$. For which model is the classification error on the validation set smallest?
+
+\begin{enumerate}
+	\item $k = 3$
+	\item $k = 4$
+	\item $k = 5$
+	\item $k = 6$
+	\item $k = 7$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Evaluate the out-of-sample classification error using \texttt{out.dta} on the 5 models to see how well the validation set predicted the best of the 5 models. For which model is the out-of-sample classification error smallest?
+
+\begin{enumerate}
+	\item $k = 3$
+	\item $k = 4$
+	\item $k = 5$
+	\item $k = 6$
+	\item $k = 7$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Reverse the role of training and validation sets; now training with the last 10 examples and validating with the first 25 examples. For which model is the classification error on the validation set smallest?
+
+\begin{enumerate}
+	\item $k = 3$
+	\item $k = 4$
+	\item $k = 5$
+	\item $k = 6$
+	\item $k = 7$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 4
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Once again, evaluate the out-of-sample classification error using \texttt{out.dta} on the 5 models to see how well the validation set predicted the best of the 5 models. For which model is the out-of-sample classification error smallest?
+
+\begin{enumerate}
+	\item $k = 3$
+	\item $k = 4$
+	\item $k = 5$
+	\item $k = 6$
+	\item $k = 7$
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 5
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+What values are closest in Euclidean distance to the out-of-sample classification error obtained for the model chosen in Problems 1 and 3, respectively?
+
+\begin{enumerate}
+	\item 0.0, 0.1
+	\item 0.1, 0.2
+	\item 0.1, 0.3
+	\item 0.2, 0.2
+	\item 0.2, 0.3
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{Validation Bias}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 6
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+Let $\mathrm{e}_1$ and $\mathrm{e}_2$ be independent random variables, distributed uniformly over the interval $[0, 1]$. Let $\mathrm{e} = \min(\mathrm{e}_1, \mathrm{e}_2)$. The expected values of $\mathrm{e}_1$, $\mathrm{e}_2$, $\mathrm{e}$ are closest to
+
+\begin{enumerate}
+	\item 0.5, 0.5, 0
+	\item 0.5, 0.5, 0.1
+	\item 0.5, 0.5, 0.25
+	\item 0.5, 0.5, 0.4
+	\item 0.5, 0.5, 0.5
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{Cross Validation}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 7
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+You are given the data points $(x, y): (-1, 0), (\rho, 1), (1, 0), \rho \geq 0$, and a choice between two models: constant $\{h_0(x) = b\}$ and linear $\{h_1(x) = ax + b\}$. For which value of $\rho$ would the two models be tied using leave-one-out cross-validation with the squared error measure?
+
+\begin{enumerate}
+	\item $\sqrt{\sqrt{3} + 4}$
+	\item $\sqrt{\sqrt{3} - 1}$
+	\item $\sqrt{9 + 4\sqrt{6}}$
+	\item $\sqrt{9 - \sqrt{6}}$
+	\item None of the above
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+\section{PLA vs. SVM}
+
+\textit{Notice: Quadratic Programming packages sometimes need tweaking and have numerical issues, and this is characteristic of packages you will use in practical ML situations. Your understanding of support vectors will help you get to the correct answers.}
+
+In the following problems, we compare PLA to SVM with hard margin on linearly separable data sets. For each run, you will create your own target function $f$ and data set $\mathcal{D}$. Take $d = 2$ and choose a random line in the plane as your target function $f$ (do this by taking two random, uniformly distributed points on $[-1, 1] \times [-1, 1]$ and taking the line passing through them), where one side of the line maps to +1 and the other maps to -1. Choose the inputs $\mathbf{x}_n$ of the data set as random points in $\mathcal{X} = [-1, 1] \times [-1, 1]$, and evaluate the target function on each $\mathbf{x}_n$ to get the corresponding output $y_n$. If all data points are on one side of the line, discard the run and start a new run.
+
+Start PLA with the all-zero vector and pick the misclassified point for each PLA iteration at random. Run PLA to find the final hypothesis $g_\tn{PLA}$ and measure the disagreement between $f$ and $g_\tn{PLA}$ as $\mathbb{P}[f(\mathbf{x}) \neq g_\tn{PLA}(\mathbf{x})]$ (you can either calculate this exactly, or approximate it by generating a sufficiently large, separate set of points to evaluate it). Now, run SVM on the same data to find the final hypothesis $g_\tn{SVM}$ by solving
+\[
+	\begin{array}{cl}
+		\min_{\mathbf{w}, b}	& \frac{1}{2}\mathbf{w}^T\mathbf{w} \\
+		\tn{s.t.}				& y_n(\mathbf{w}^T\mathbf{x}_n + b) \geq 1
+	\end{array}
+\]
+using quadratic programming on the primal or the dual problem, or using an SVM package. Measure the disagreement between $f$ and $g_\tn{SVM}$ as $\mathbb{P}[f(\mathbf{x}) \neq g_\tn{SVM}(\mathbf{x})]$, and count the number of support vectors you get in each run.
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 8
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+For $N = 10$, repeat the above experiment for 1000 runs. How often is $g_\tn{SVM}$ better than $g_\tn{PLA}$ in approximating $f$? The percentage of time is closest to:
+
+\begin{enumerate}
+	\item 20\%
+	\item 40\%
+	\item 60\%
+	\item 80\%
+	\item 100\%
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 9
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+For $N = 100$, repeat the above experiment for 1000 runs. How often is $g_\tn{SVM}$ better than $g_\tn{PLA}$ in approximating $f$? The percentage of time is closest to:
+
+\begin{enumerate}
+	\item 5\%
+	\item 25\%
+	\item 45\%
+	\item 65\%
+	\item 85\%
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 10
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+For the case $N = 100$, which of the following is the closest to the average number of support vectors of $g_\tn{SVM}$ (averaged over the 1000 runs)?
+
+\begin{enumerate}
+	\item 2
+	\item 3
+	\item 5
+	\item 10
+	\item 20
+\end{enumerate} % Question
+
+\problemAnswer{ % Answer
+	
+}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
